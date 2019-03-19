@@ -9,7 +9,7 @@ namespace NUDES.Retornator.MVC
         /// Add a ResponseManager as a singleton through a IServiceCollection.
         /// </summary>
         /// <param name="services">The IServiceCollection instance used to add the singleton.</param>
-        /// <param name="responseManager">A ResponseManager to be used as singleton. If null a new one will be created.</param>
+        /// <param name="responseManager">A ResponseManager to be used as singleton. If is null a new isntance will be created.</param>
         /// <returns>The registered ResponseManager.</returns>
         public static ResponseManager AddResponseManager(this IServiceCollection services, ResponseManager responseManager = null)
         {

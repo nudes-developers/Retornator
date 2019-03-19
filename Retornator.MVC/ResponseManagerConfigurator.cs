@@ -5,7 +5,7 @@ using System.Net;
 namespace NUDES.Retornator.MVC
 {
     /// <summary>
-    /// Represents a class that implements ResponseManagerConfigurator.RegisterErrors to configure a ResponseManager singleton.
+    /// Represents a class who will be used to register errors in a ResponseManager.
     /// </summary>
     public abstract class ResponseManagerConfigurator
     {
@@ -24,8 +24,8 @@ namespace NUDES.Retornator.MVC
         /// <summary>
         /// Registers an error on a ResponseManager through ResponseManager.RegisterError&lt;T&gt;.
         /// </summary>
-        /// <typeparam name="T">The error type who must inherits from Error.</typeparam>
-        /// <param name="func">A function who can convert errors of the chosen type to System.Net.HttpStatusCode.</param>
-        public void ErrorFor<T>(Func<DetailedError, HttpStatusCode> func) where T : DetailedError => responseManager.RegisterError<T>(func);
+        /// <typeparam name="T">The error type who must inherit from Error.</typeparam>
+        /// <param name="func">A function to convert errors of the chosen type to System.Net.HttpStatusCode.</param>
+        public void ErrorFor<T>(Func<Error, HttpStatusCode> func) where T : Error => responseManager.RegisterError<T>(func);
     }
 }
