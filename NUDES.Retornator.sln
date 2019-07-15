@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUDES.Retornator.Base", "Retornator.Base\NUDES.Retornator.Base.csproj", "{5B825F9C-7201-4DC1-AF5B-0E7FC4DF1F4B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUDES.Retornator.MVC", "Retornator.MVC\NUDES.Retornator.MVC.csproj", "{70E4E60A-F016-4858-BE89-B7D40C63F15B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{9CB88236-1E33-406B-BD81-2146FB905696}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUDES.Retornator.Sample", "NUDES.Retornator.Sample\NUDES.Retornator.Sample.csproj", "{C4FD0C39-F98B-41A8-B7AC-1FCAEAC400B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{70E4E60A-F016-4858-BE89-B7D40C63F15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E4E60A-F016-4858-BE89-B7D40C63F15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70E4E60A-F016-4858-BE89-B7D40C63F15B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4FD0C39-F98B-41A8-B7AC-1FCAEAC400B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4FD0C39-F98B-41A8-B7AC-1FCAEAC400B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4FD0C39-F98B-41A8-B7AC-1FCAEAC400B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4FD0C39-F98B-41A8-B7AC-1FCAEAC400B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C4FD0C39-F98B-41A8-B7AC-1FCAEAC400B4} = {9CB88236-1E33-406B-BD81-2146FB905696}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FFB0348-B1BE-4DE6-BE32-3EB464DD33C6}

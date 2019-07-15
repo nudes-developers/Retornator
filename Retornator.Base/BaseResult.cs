@@ -13,6 +13,9 @@ namespace NUDES.Retornator.Base
         internal Error Error { get; set; }
 
         public Error GetError() => Error;
+
+
+        public class Empty : BaseResult<Empty> { }
     }
 
     /// <summary>
