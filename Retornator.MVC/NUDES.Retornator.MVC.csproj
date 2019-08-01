@@ -1,17 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackageId>NUDES.Retornator.MVC</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.2</Version>
     <Authors>Brian C. Lira</Authors>
     <Company>NUDES - SENAI</Company>
     <IsPackable>true</IsPackable>
     <PackageTags>notification pattern, error notification, webapi, mvc</PackageTags>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <AssemblyVersion>0.1.2.0</AssemblyVersion>
+    <FileVersion>0.1.2.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/nudes-senaisp/Retornator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nudes-senaisp/Retornator</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
   </ItemGroup>
 
   <ItemGroup>
