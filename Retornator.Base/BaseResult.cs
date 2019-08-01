@@ -81,9 +81,7 @@ namespace NUDES.Retornator.Base
             else
                 Error.Details.AddRange(details);
 
-            foreach (var detail in details)
-                AddDescription(detail);
-
+            
             return this as T;
         }
 
