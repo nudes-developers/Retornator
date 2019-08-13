@@ -1,23 +1,23 @@
-﻿using NUDES.Retornator.Base;
+﻿using Nudes.Retornator.Core;
 using System;
 using System.Net;
 
-namespace NUDES.Retornator.MVC
+namespace Nudes.Retornator.AspnetCore
 {
     /// <summary>
     /// Represents a class who will be used to register errors in a ResponseManager.
     /// </summary>
     public abstract class ResponseManagerConfigurator
     {
-        private readonly ResponseManager responseManager;
+        private readonly HttpResponseManager responseManager;
 
-        public ResponseManagerConfigurator(ResponseManager responseManager)
+        public ResponseManagerConfigurator(HttpResponseManager responseManager)
         {
             this.responseManager = responseManager;
         }
 
         /// <summary>
-        /// Overrite registering your application errors with ResponseManagerConfigurator.ErrorFor&lt;T&gt;.
+        /// Override registering your application errors with ResponseManagerConfigurator.ErrorFor&lt;T&gt;.
         /// </summary>
         public virtual void RegisterErrors() => throw new NotImplementedException();
 

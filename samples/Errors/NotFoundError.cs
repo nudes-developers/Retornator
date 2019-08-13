@@ -1,10 +1,10 @@
-﻿using NUDES.Retornator.Base;
+﻿using Nudes.Retornator.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NUDES.Retornator.Sample.Errors
+namespace Nudes.Retornator.Sample.Errors
 {
     public class NotFoundError : Error
     {

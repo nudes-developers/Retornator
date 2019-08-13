@@ -1,10 +1,10 @@
-﻿using NUDES.Retornator.Base;
+﻿using Nudes.Retornator.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NUDES.Retornator.Sample.Features.Values.Errors
+namespace Nudes.Retornator.Sample.Features.Values.Errors
 {
     public class ValueInvalidError : Error
     {

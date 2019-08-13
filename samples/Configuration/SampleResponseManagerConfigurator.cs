@@ -1,16 +1,16 @@
-﻿using NUDES.Retornator.MVC;
-using NUDES.Retornator.Sample.Errors;
-using NUDES.Retornator.Sample.Features.Values.Errors;
+﻿using Nudes.Retornator.AspnetCore;
+using Nudes.Retornator.Sample.Errors;
+using Nudes.Retornator.Sample.Features.Values.Errors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NUDES.Retornator.Sample.Configuration
+namespace Nudes.Retornator.Sample.Configuration
 {
     public class SampleResponseManagerConfigurator : ResponseManagerConfigurator
     {
-        public SampleResponseManagerConfigurator(ResponseManager responseManager) : base(responseManager)
+        public SampleResponseManagerConfigurator(HttpResponseManager responseManager) : base(responseManager)
         {
         }
 

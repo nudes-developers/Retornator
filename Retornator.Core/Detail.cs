@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NUDES.Retornator.Base
+﻿namespace Nudes.Retornator.Core
 {
     /// <summary>
     /// Represents a detail/part of an error. Made to be used with Base.Error.

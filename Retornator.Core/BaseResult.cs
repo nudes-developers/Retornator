@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System;
 
-namespace NUDES.Retornator.Base
+namespace Nudes.Retornator.Core
 {
     /// <summary>
     /// Represents a result of an operation to be returned on the service layer.
@@ -13,7 +12,6 @@ namespace NUDES.Retornator.Base
         internal Error Error { get; set; }
 
         public Error GetError() => Error;
-
 
         public class Empty : BaseResult<Empty> { }
     }
@@ -37,8 +35,7 @@ namespace NUDES.Retornator.Base
         /// <param name="name">Name of the error (a quick description of what happened).</param>
         /// <param name="descprition">Message describing the error (a deep explanation of what happened).</param>
         /// <returns>A instance of BaseResult&lt;T&gt;/></returns>
-        public static T Throw(string name, string descprition) => Throw(new Error(name, descprition));
-
+        public static T Throw(string name, string description) => Throw(new Error(name, description));
 
         /// <summary>
         /// Add a detail to the error of this BaseResult.
@@ -81,7 +78,6 @@ namespace NUDES.Retornator.Base
             else
                 Error.Details.AddRange(details);
 
-            
             return this as T;
         }
 
@@ -91,6 +87,34 @@ namespace NUDES.Retornator.Base
         /// <param name="details">The detail list to add.</param>
         /// <returns>The calling object.</returns>
         public T AddDescriptions(IEnumerable<(string, string)> details) => AddDescriptions(details.Select(detail => new Detail(detail.Item1, detail.Item2)));
+
+        /// <summary>
+        /// Add a error closely coupled to a field/argument of the request
+        /// </summary>
+        /// <param name="fieldName">Name of field that caused the error</param>
+        /// <param name="errors">Errors caused by the field value</param>
+        /// <returns></returns>
+        public T AddFieldError(string fieldName, params string[] errors)
+        {
+            if (Error is null)
+                throw new InvalidOperationException($"The error is null. This method should be used with the reuslt of BaseResult<T>.Throw.");
+
+            if (Error.FieldErrors is null)
+                Error.FieldErrors = new Dictionary<string, List<string>>();
+
+            if (String.IsNullOrEmpty(fieldName))
+                throw new ArgumentNullException(nameof(fieldName));
+
+            if (errors.Length == 0)
+                throw new ArgumentNullException(nameof(errors));
+
+            if (Error.FieldErrors.ContainsKey(fieldName))
+                Error.FieldErrors[fieldName].AddRange(errors);
+            else
+                Error.FieldErrors[fieldName] = new List<string>(errors);
+
+            return this as T;
+        }
 
     }
 }

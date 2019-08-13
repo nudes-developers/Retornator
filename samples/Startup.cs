@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NUDES.Retornator.MVC;
-using NUDES.Retornator.Sample.Configuration;
-using NUDES.Retornator.Sample.Errors;
-using NUDES.Retornator.Sample.Features.Values.Errors;
+using Nudes.Retornator.AspnetCore;
+using Nudes.Retornator.Sample.Configuration;
+using Nudes.Retornator.Sample.Errors;
+using Nudes.Retornator.Sample.Features.Values.Errors;
 
-namespace NUDES.Retornator.Sample
+namespace Nudes.Retornator.Sample
 {
     public class Startup
     {
@@ -46,20 +47,24 @@ namespace NUDES.Retornator.Sample
 
 
             ///Invoking AddResponseManager passing a type who inherits from ResponseManagerConfigurator and knows how to register errors (thats what we'll use):
-            services.AddResponseManager<SampleResponseManagerConfigurator>();
+            //services.AddResponseManager<SampleResponseManagerConfigurator>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers(op => op.AddRetornator(services.BuildServiceProvider()));
+                
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

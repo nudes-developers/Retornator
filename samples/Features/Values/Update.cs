@@ -1,12 +1,12 @@
-﻿using NUDES.Retornator.Base;
-using NUDES.Retornator.Sample.Errors;
-using NUDES.Retornator.Sample.Features.Values.Errors;
+﻿using Nudes.Retornator.Core;
+using Nudes.Retornator.Sample.Errors;
+using Nudes.Retornator.Sample.Features.Values.Errors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NUDES.Retornator.Sample.Features.Values
+namespace Nudes.Retornator.Sample.Features.Values
 {
     public class Update
     {

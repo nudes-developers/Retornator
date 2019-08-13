@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "NUDES.Retornator.Sample": {
+    "AutoExec": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",
