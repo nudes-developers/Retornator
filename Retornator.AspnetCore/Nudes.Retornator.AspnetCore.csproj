@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <PackageId>Nudes.Retornator.AspnetCore</PackageId>
+    <Version>0.1.3</Version>
+    <Authors>Brian C. Lira; Patrick Ens</Authors>
+    <Company>NUDES - SENAI</Company>
+    <IsPackable>true</IsPackable>
+    <PackageTags>notification pattern, error notification, webapi, mvc</PackageTags>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <AssemblyVersion>0.1.3.0</AssemblyVersion>
+    <FileVersion>0.1.3.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/nudes-senaisp/Retornator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nudes-senaisp/Retornator</RepositoryUrl>
+    <Product>Nudes.Retornator.AspnetCore</Product>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview7.19365.7" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Retornator.Core\Nudes.Retornator.Core.csproj" />
+  </ItemGroup>
+
+</Project>
