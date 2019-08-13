@@ -1,10 +1,6 @@
 ﻿using Nudes.Retornator.AspnetCore;
 using Nudes.Retornator.Sample.Errors;
 using Nudes.Retornator.Sample.Features.Values.Errors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Nudes.Retornator.Sample.Configuration
 {
