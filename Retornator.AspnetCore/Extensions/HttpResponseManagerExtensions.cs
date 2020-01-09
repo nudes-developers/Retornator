@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Nudes.Retornator.AspnetCore.ResponseManager;
 using Nudes.Retornator.Core;
 using System;
 using System.Net;

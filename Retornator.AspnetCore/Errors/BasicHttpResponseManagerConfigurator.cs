@@ -1,4 +1,5 @@
-﻿using Nudes.Retornator.Core;
+﻿using Nudes.Retornator.AspnetCore.ResponseManager;
+using Nudes.Retornator.Core;
 using System.Net;
 
 namespace Nudes.Retornator.AspnetCore.Errors
