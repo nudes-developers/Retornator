@@ -2,7 +2,7 @@
 using System;
 using System.Net;
 
-namespace Nudes.Retornator.AspnetCore
+namespace Nudes.Retornator.AspnetCore.ResponseManager
 {
     /// <summary>
     /// Represents a class who will be used to register errors in a ResponseManager.

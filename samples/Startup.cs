@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,11 +48,17 @@ namespace Nudes.Retornator.Sample
 
 
             ///Invoking AddResponseManager passing a type who inherits from ResponseManagerConfigurator and knows how to register errors (thats what we'll use):
-            //services.AddResponseManager<SampleResponseManagerConfigurator>();
+            
+            services.AddResponseManager<SampleResponseManagerConfigurator>();
 
-            services.AddControllers(op => op.AddRetornator(services.BuildServiceProvider()));
-                
-                
+            // Retornator uses the default json serializer since aspnetcore 3.1 so we need to inject it separatedly
+            services.AddSingleton<JsonSerializerOptions>(new JsonSerializerOptions
+            {
+                 IgnoreNullValues = true,
+                  WriteIndented = true,
+            });
+
+            services.AddControllers().AddRetornator();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

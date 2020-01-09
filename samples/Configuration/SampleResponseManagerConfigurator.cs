@@ -1,4 +1,5 @@
 ﻿using Nudes.Retornator.AspnetCore;
+using Nudes.Retornator.AspnetCore.ResponseManager;
 using Nudes.Retornator.Sample.Errors;
 using Nudes.Retornator.Sample.Features.Values.Errors;
 

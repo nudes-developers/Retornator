@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 
-namespace Nudes.Retornator.AspnetCore
+namespace Nudes.Retornator.AspnetCore.ResponseManager
 {
     /// <summary>
     /// Represents a service to use in the AspNetCore Controllers to handle what its endpoints returns.

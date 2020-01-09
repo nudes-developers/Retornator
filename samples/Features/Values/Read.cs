@@ -16,16 +16,16 @@ namespace Nudes.Retornator.Sample.Features.Values
             public string Name { get; set; }
         }
 
-        public static async Task<Result> Handle(bool returnWithError)
+        public static Task<Result> Handle(bool returnWithError)
         {
             if (returnWithError)
-                return Result.Throw(new ValueNotFoundError(1));
+                return Task.FromResult(Result.Throw(new ValueNotFoundError(1)));
             
-            return new Result()
+            return Task.FromResult(new Result()
             {
                 Id = 1,
                 Name = "Result of a success read"
-            };
+            });
         }
     }
 }
