@@ -10,28 +10,30 @@ namespace Nudes.Retornator.Core
         /// <summary>
         /// Name of the error (a quick description of what happened).
         /// </summary>
-        public virtual string Name { get; internal set; }
+        public virtual string Name { get; set; }
 
         /// <summary>
         /// Message describing the error (a deep explanation of what happened).
         /// </summary>
-        public virtual string Description { get; internal set; }
-
-        /// <summary>
-        /// List that represents details of this error.
-        /// </summary>
-        public List<Detail> Details { get; set; }
+        public virtual string Description { get; set; }
 
         /// <summary>
         /// List representing all errors related to fields
         /// </summary>
         public Dictionary<string, List<string>> FieldErrors { get; set; }
 
+
+        public Error()
+        {
+            Name = string.Empty;
+            Description = string.Empty;
+        }
+
         public Error(string name, string description)
         {
             Name = name;
             Description = description;
         }
-        
+
     }
 }
