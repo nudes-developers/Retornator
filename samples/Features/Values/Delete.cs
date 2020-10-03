@@ -6,12 +6,12 @@ namespace Nudes.Retornator.Sample.Features.Values
 {
     public class Delete
     {
-        public static Task<BaseResult.Empty> Handle(bool returnWithError)
+        public static Task<CleanResult> Handle(bool returnWithError)
         {
             if (returnWithError)
-                return Task.FromResult(BaseResult.Empty.Throw(new ValueNotFoundError(1)));
+                return Task.FromResult(CleanResult.Throw(new ValueNotFoundError(1)));
 
-            return Task.FromResult(new BaseResult.Empty());
+            return Task.FromResult(CleanResult.Value);
         }
     }
 }
