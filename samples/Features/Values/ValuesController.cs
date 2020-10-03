@@ -18,6 +18,9 @@ namespace Nudes.Retornator.Sample.Features.Values
         public async Task<ActionResult<Update.Result>> Put([FromQuery]bool error = false) => await Update.Handle(error);
 
         [HttpDelete]
-        public async Task<ActionResult<BaseResult.Empty>> Delete([FromQuery]bool error = false) => await Values.Delete.Handle(error);
+        public async Task<CleanResult> Delete([FromQuery]bool error = false) => await Values.Delete.Handle(error);
+
+        [HttpGet("download")]
+        public Task<StreamResult> Download([FromQuery] bool error = false) => Values.Download.Handle(error);
     }
 }

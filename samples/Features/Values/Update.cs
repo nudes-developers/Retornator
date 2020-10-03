@@ -20,8 +20,8 @@ namespace Nudes.Retornator.Sample.Features.Values
         {
             if (returnWithError)
                 return Task.FromResult(Result.Throw(new ValueInvalidError("2.0"))
-                        .AddDescription("Name", "The field name must have 30 or more characters.")
-                        .AddDescription("Id", "The field Id cannot be altered."));
+                        .AddFieldError("Name", "The field name must have 30 or more characters.")
+                        .AddFieldError("Id", "The field Id cannot be altered."));
 
             return Task.FromResult(new Result()
             {
