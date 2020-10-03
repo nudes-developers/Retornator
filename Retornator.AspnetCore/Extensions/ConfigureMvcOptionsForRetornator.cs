@@ -33,6 +33,7 @@ namespace Nudes.Retornator.AspnetCore
             logger.LogInformation("Adding Retornator output formatter");
             int index = op.OutputFormatters.IndexOf(op.OutputFormatters.OfType<SystemTextJsonOutputFormatter>().First());
             op.OutputFormatters.Insert(index, new RetornatorOutputFormatter(jsonSerializerOptions, responseManager));
+            op.OutputFormatters.Insert(index, new RetornartorStreamOutputFormatter());
         }
     }
 }
