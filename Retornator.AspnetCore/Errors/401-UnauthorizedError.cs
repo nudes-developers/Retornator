@@ -4,7 +4,7 @@ namespace Nudes.Retornator.AspnetCore.Errors
 {
     public class UnauthorizedError : Error
     {
-        public UnauthorizedError() : base("Unauthorized", "User is not or failed authorization")
+        public UnauthorizedError() : base("Unauthorized", "User has no authorization")
         { }
     }
 }
