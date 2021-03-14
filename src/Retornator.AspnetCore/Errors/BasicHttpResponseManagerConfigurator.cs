@@ -19,6 +19,7 @@ namespace Nudes.Retornator.AspnetCore.Errors
             ErrorFor<IamATeapotError>(error => (HttpStatusCode)418);
             ErrorFor<UnprocessableEntityError>(error => HttpStatusCode.UnprocessableEntity);
             ErrorFor<ServiceUnavaiableError>(error => HttpStatusCode.ServiceUnavailable);
+            ErrorFor<Error>(error => HttpStatusCode.BadRequest);
         }
     }
 }
