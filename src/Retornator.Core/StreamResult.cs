@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿//using System.IO;
 
-namespace Nudes.Retornator.Core
-{
-    public class StreamResult : BaseResult<StreamResult>
-    {
-        public Stream Stream { get; set; }
+//namespace Nudes.Retornator.Core;
 
-        public string FileName { get; set; }
+//public class StreamResult : BaseResult<StreamResult>
+//{
+//    public Stream Stream { get; set; }
 
-        public string ContentType { get; set; } = "application/octet-stream";
-    }
-}
+//    public string FileName { get; set; }
+
+//    public string ContentType { get; set; } = "application/octet-stream";
+//}

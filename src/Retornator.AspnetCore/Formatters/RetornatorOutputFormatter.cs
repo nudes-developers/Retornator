@@ -24,9 +24,9 @@ namespace Nudes.Retornator.AspnetCore
     public class RetornatorOutputFormatter : TextOutputFormatter
     {
         private readonly JsonSerializerOptions jsonSerializerOptions;
-        private readonly IResponseManager<HttpStatusCode> responseManager;
+        private readonly IErrorDomainTranslator<HttpStatusCode> responseManager;
 
-        public RetornatorOutputFormatter(JsonSerializerOptions jsonSerializerOptions, IResponseManager<HttpStatusCode> responseManager)
+        public RetornatorOutputFormatter(JsonSerializerOptions jsonSerializerOptions, IErrorDomainTranslator<HttpStatusCode> responseManager)
         {
             this.jsonSerializerOptions = jsonSerializerOptions;
             this.responseManager = responseManager;
@@ -37,7 +37,7 @@ namespace Nudes.Retornator.AspnetCore
             SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse("application/*+json"));
         }
 
-        protected override bool CanWriteType(Type type) => typeof(BaseResult).IsAssignableFrom(type);
+        protected override bool CanWriteType(Type type) => typeof(Result).IsAssignableFrom(type);
 
         public override bool CanWriteResult(OutputFormatterCanWriteContext context) => base.CanWriteResult(context);
 
@@ -90,7 +90,7 @@ namespace Nudes.Retornator.AspnetCore
         {
             
             Error err;
-            if (context.Object is BaseResult result && (err = result.GetError()) != null)
+            if (context.Object is Result result && (err = result.GetError()) != null)
             {
                 context.HttpContext.Response.StatusCode = (int)responseManager.Translate(err);
                 return NonRetornatorWriteResponseBodyAsync(new OutputFormatterWriteContext(context.HttpContext, context.WriterFactory, err.GetType(), err), selectedEncoding);

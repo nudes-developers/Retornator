@@ -19,7 +19,7 @@ namespace Nudes.Retornator.AspnetCore
             if (responseManager is null)
                 responseManager = new HttpResponseManager();
 
-            services.AddSingleton<IResponseManager<HttpStatusCode>>(responseManager);
+            services.AddSingleton<IErrorDomainTranslator<HttpStatusCode>>(responseManager);
 
             return responseManager;
         }
@@ -39,7 +39,7 @@ namespace Nudes.Retornator.AspnetCore
             T t = Activator.CreateInstance(typeof(T), responseManager) as T;
             t.RegisterErrors();
 
-            return services.AddSingleton<IResponseManager<HttpStatusCode>>(responseManager);
+            return services.AddSingleton<IErrorDomainTranslator<HttpStatusCode>>(responseManager);
         }
     }
 }

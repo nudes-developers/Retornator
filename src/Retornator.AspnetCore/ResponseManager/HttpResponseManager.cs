@@ -8,7 +8,7 @@ namespace Nudes.Retornator.AspnetCore.ResponseManager
     /// <summary>
     /// Represents a service to use in the AspNetCore Controllers to handle what its endpoints returns.
     /// </summary>
-    public class HttpResponseManager : IResponseManager<HttpStatusCode>
+    public class HttpResponseManager : IErrorDomainTranslator<HttpStatusCode>
     {
         private readonly Dictionary<Type, Func<Error, HttpStatusCode>> InnerDelegations;
 
@@ -17,7 +17,7 @@ namespace Nudes.Retornator.AspnetCore.ResponseManager
             InnerDelegations = new Dictionary<Type, Func<Error, HttpStatusCode>>();
         }
 
-        IResponseManager<HttpStatusCode> IResponseManager<HttpStatusCode>.RegisterError<TError>(Func<Error, HttpStatusCode> translate) => RegisterError<TError>(translate);
+        IErrorDomainTranslator<HttpStatusCode> IErrorDomainTranslator<HttpStatusCode>.RegisterError<TError>(Func<Error, HttpStatusCode> translate) => RegisterError<TError>(translate);
         
         public HttpResponseManager RegisterError<T>(Func<Error, HttpStatusCode> translate) where T : Error
         {

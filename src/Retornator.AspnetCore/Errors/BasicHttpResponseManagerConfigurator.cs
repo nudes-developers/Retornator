@@ -6,7 +6,7 @@ namespace Nudes.Retornator.AspnetCore.Errors
 {
     public class BasicHttpResponseManagerConfigurator : ResponseManagerConfigurator
     {
-        public BasicHttpResponseManagerConfigurator(IResponseManager<HttpStatusCode> responseManager) : base(responseManager)
+        public BasicHttpResponseManagerConfigurator(IErrorDomainTranslator<HttpStatusCode> responseManager) : base(responseManager)
         { }
 
         public override void RegisterErrors()

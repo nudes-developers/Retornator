@@ -10,7 +10,7 @@ namespace Nudes.Retornator.Sample.Features.Values
 {
     public class Update
     {
-        public class Result : BaseResult<Update.Result>
+        public class Result : ResultOf<Update.Result>
         {
             public int Id { get; set; }
             public string Name { get; set; }

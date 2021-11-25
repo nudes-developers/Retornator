@@ -6,7 +6,7 @@ namespace Nudes.Retornator.Sample.Features.Values
 {
     public class Write
     {
-        public class Result : BaseResult<Write.Result>
+        public class Result : ResultOf<Write.Result>
         {
             public int Id { get; set; }
             public string Name { get; set; }

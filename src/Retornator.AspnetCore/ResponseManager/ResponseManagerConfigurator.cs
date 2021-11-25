@@ -9,9 +9,9 @@ namespace Nudes.Retornator.AspnetCore.ResponseManager
     /// </summary>
     public abstract class ResponseManagerConfigurator
     {
-        private readonly IResponseManager<HttpStatusCode> responseManager;
+        private readonly IErrorDomainTranslator<HttpStatusCode> responseManager;
 
-        public ResponseManagerConfigurator(IResponseManager<HttpStatusCode> responseManager)
+        public ResponseManagerConfigurator(IErrorDomainTranslator<HttpStatusCode> responseManager)
         {
             this.responseManager = responseManager;
         }

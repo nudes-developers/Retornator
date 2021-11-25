@@ -10,7 +10,7 @@ namespace Nudes.Retornator.Sample.Features.Values
 {
     public class Read
     {
-        public class Result : BaseResult<Read.Result>
+        public class Result : ResultOf<Read.Result>
         {
             public int Id { get; set; }
             public string Name { get; set; }

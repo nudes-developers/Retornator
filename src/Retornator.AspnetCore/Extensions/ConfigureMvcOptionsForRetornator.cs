@@ -18,10 +18,10 @@ namespace Nudes.Retornator.AspnetCore
     public class ConfigureMvcOptionsForRetornator : IConfigureOptions<MvcOptions>
     {
         private readonly ILogger<MvcOptions> logger;
-        private readonly IResponseManager<HttpStatusCode> responseManager;
+        private readonly IErrorDomainTranslator<HttpStatusCode> responseManager;
         private readonly JsonSerializerOptions jsonSerializerOptions;
 
-        public ConfigureMvcOptionsForRetornator(ILogger<MvcOptions> logger, IResponseManager<HttpStatusCode> responseManager, JsonSerializerOptions jsonSerializerOptions)
+        public ConfigureMvcOptionsForRetornator(ILogger<MvcOptions> logger, IErrorDomainTranslator<HttpStatusCode> responseManager, JsonSerializerOptions jsonSerializerOptions)
         {
             this.logger = logger;
             this.responseManager = responseManager;
