@@ -1,26 +1,20 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Nudes.Retornator.Core;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Nudes.Retornator.Sample.Features.Values
+namespace Nudes.Retornator.Sample.Features.Values;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ValuesController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ValuesController : ControllerBase
-    {
-        [HttpGet]
-        public async Task<Read.Result> Get([FromQuery]bool error = false) => await Read.Handle(error);
+    [HttpGet]
+    public Task<ResultOf<ReadResult>> Get([FromQuery] bool error = false) => ReadHandler.Handle(error);
 
-        [HttpPost]
-        public async Task<Write.Result> Post([FromQuery]bool error = false) => await Write.Handle(error);
+    [HttpPost]
+    public Task<ResultOf<WriteResult>> Post([FromQuery] bool error = false) => WriteHandler.Handle(error);
 
-        [HttpPut]
-        public async Task<ActionResult<Update.Result>> Put([FromQuery]bool error = false) => await Update.Handle(error);
+    [HttpPut]
+    public Task<ResultOf<UpdateResult>> Put([FromQuery] bool error = false) => UpdateHandler.Handle(error);
 
-        [HttpDelete]
-        public async Task<CleanResult> Delete([FromQuery]bool error = false) => await Values.Delete.Handle(error);
-
-        [HttpGet("download")]
-        public Task<StreamResult> Download([FromQuery] bool error = false) => Values.Download.Handle(error);
-    }
+    [HttpDelete]
+    public Task<Result> Delete([FromQuery] bool error = false) => DeleteHandler.Handle(error);
 }

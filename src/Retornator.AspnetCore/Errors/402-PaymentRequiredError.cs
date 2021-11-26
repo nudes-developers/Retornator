@@ -1,13 +1,22 @@
 ﻿using Nudes.Retornator.Core;
 
-namespace Nudes.Retornator.AspnetCore.Errors
-{
-    public class PaymentRequiredError : Error
-    {
-        public PaymentRequiredError() : base("Payment required", "Missing payment for the resource")
-        { }
+namespace Nudes.Retornator.AspnetCore.Errors;
 
-        public PaymentRequiredError(string resourceName) : base("Payment required", $"Missing payment for {resourceName}")
-        { }
-    }
+/// <summary>
+/// Request requires payment to be completed
+/// </summary>
+public class PaymentRequiredError : Error
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public PaymentRequiredError() : base("Payment required", "Missing payment for the resource")
+    { }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="resourceName"></param>
+    public PaymentRequiredError(string resourceName) : base("Payment required", $"Missing payment for {resourceName}")
+    { }
 }

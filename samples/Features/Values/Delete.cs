@@ -1,17 +1,15 @@
-﻿using Nudes.Retornator.Core;
-using Nudes.Retornator.Sample.Features.Values.Errors;
-using System.Threading.Tasks;
+﻿using Nudes.Retornator.Sample.Features.Values.Errors;
 
-namespace Nudes.Retornator.Sample.Features.Values
+namespace Nudes.Retornator.Sample.Features.Values;
+
+public class DeleteHandler
 {
-    public class Delete
+    public static async Task<Result> Handle(bool returnWithError)
     {
-        public static Task<CleanResult> Handle(bool returnWithError)
-        {
-            if (returnWithError)
-                return Task.FromResult(CleanResult.Throw(new ValueNotFoundError(1)));
+        await Task.CompletedTask;
+        if (returnWithError)
+            return Result.Throw(new ValueNotFoundError(1));
 
-            return Task.FromResult(CleanResult.Value);
-        }
+        return Result.Success;
     }
 }

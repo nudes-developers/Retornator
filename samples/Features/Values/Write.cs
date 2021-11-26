@@ -1,27 +1,26 @@
-﻿using Nudes.Retornator.Core;
-using Nudes.Retornator.Sample.Features.Values.Errors;
-using System.Threading.Tasks;
+﻿using Nudes.Retornator.Sample.Features.Values.Errors;
 
-namespace Nudes.Retornator.Sample.Features.Values
+namespace Nudes.Retornator.Sample.Features.Values;
+
+public class WriteResult
 {
-    public class Write
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public class WriteHandler
+{
+
+    public static async Task<ResultOf<WriteResult>> Handle(bool returnWithError)
     {
-        public class Result : BaseResult<Write.Result>
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
+        await Task.CompletedTask;
+        if (returnWithError)
+            return new ValueInvalidError("5.1");
 
-        public static Task<Result> Handle(bool returnWithError)
+        return new WriteResult()
         {
-            if (returnWithError)
-                return Task.FromResult(Result.Throw(new ValueInvalidError("5.1")));
-
-            return Task.FromResult(new Result()
-            {
-                Id = 3,
-                Name = "Result of a success write"
-            });
-        }
+            Id = 3,
+            Name = "Result of a success write"
+        };
     }
 }

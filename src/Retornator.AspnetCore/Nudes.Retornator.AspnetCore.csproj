@@ -1,35 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PackageId>Nudes.Retornator.AspnetCore</PackageId>
-    <Version>0.2.0</Version>
-    <Authors>Brian C. Lira; Patrick Ens</Authors>
-    <Company>NUDES - SENAI</Company>
-    <IsPackable>true</IsPackable>
-    <PackageTags>notification pattern, error notification, webapi, mvc</PackageTags>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <AssemblyVersion>0.2.0.0</AssemblyVersion>
-    <FileVersion>0.2.0.0</FileVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/nudes-senaisp/Retornator</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/nudes-senaisp/Retornator</RepositoryUrl>
-    <Product>Nudes.Retornator.AspnetCore</Product>
-  </PropertyGroup>
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<PackageId>Nudes.Retornator.AspnetCore</PackageId>
+		<Version>0.2.0</Version>
+		<Authors>Brian C. Lira; Patrick Ens</Authors>
+		<Company>NUDES - SENAI</Company>
+		<IsPackable>true</IsPackable>
+		<PackageTags>notification pattern, error notification, webapi, mvc</PackageTags>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<AssemblyVersion>0.2.0.0</AssemblyVersion>
+		<FileVersion>0.2.0.0</FileVersion>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageProjectUrl>https://github.com/nudes-senaisp/Retornator</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/nudes-senaisp/Retornator</RepositoryUrl>
+		<Product>Nudes.Retornator.AspnetCore</Product>
+		<LangVersion>10.0</LangVersion>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Retornator.Core\Nudes.Retornator.Core.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Retornator.Core\Nudes.Retornator.Core.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\..\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
