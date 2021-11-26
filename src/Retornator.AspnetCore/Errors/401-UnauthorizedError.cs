@@ -1,10 +1,15 @@
 ﻿using Nudes.Retornator.Core;
 
-namespace Nudes.Retornator.AspnetCore.Errors
+namespace Nudes.Retornator.AspnetCore.Errors;
+
+/// <summary>
+/// Request is not vinculated to a valid actor
+/// </summary>
+public class UnauthorizedError : Error
 {
-    public class UnauthorizedError : Error
-    {
-        public UnauthorizedError() : base("Unauthorized", "User has no authorization")
-        { }
-    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public UnauthorizedError() : base("Unauthorized", "User has no authorization")
+    { }
 }

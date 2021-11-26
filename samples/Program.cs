@@ -1,37 +1,45 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Nudes.Retornator.AspnetCore;
+using Nudes.Retornator.AspnetCore.Errors;
 using Nudes.Retornator.Sample.Errors;
+using System.Reflection;
 
 var builder = WebApplication
             .CreateBuilder(args);
 
 #region DependencyInjection
-///There are 4 ways to register the response manager and his errors:
-
-///Creating one, registering errors and passing it to AddResponseManager:
-//ResponseManager responseManager = new ResponseManager();
-//responseManager.RegisterError<NotFoundError>(error => System.Net.HttpStatusCode.NotFound);
-//services.AddResponseManager(responseManager);
-
-///Invoking AddResponseManager (which returns a new already registered ResponseManager) and then registering errors:
-builder.Services.AddResponseManager()
-  .RegisterError<NotFoundError>(error => System.Net.HttpStatusCode.NotFound);
+builder.Services.AddMediatR(Assembly.GetEntryAssembly());
 
 
-///Creating one and passing it along with a type who inherits from ResponseManagerConfigurator and knows how to register errors:
-//ResponseManager responseManager = new ResponseManager();
-//services.AddResponseManager<SampleResponseManagerConfigurator>(responseManager);
-
-
-///Invoking AddResponseManager passing a type who inherits from ResponseManagerConfigurator and knows how to register errors (thats what we'll use):
-
-//services.AddResponseManager<SampleResponseManagerConfigurator>();
-
-// Add controllers and configure retornator
+// register an erro translator, with the default builder all pre configured errors will be translated
 builder.Services
-    .AddControllers() 
+    .AddErrorTranslator(ErrorHttpTranslatorBuilder.Default
+    .TranslationFor<MyNotFoundError>(e => System.Net.HttpStatusCode.NotFound));
+
+// alternatively you can specify your translations
+// builder.Services
+//    .AddErrorTranslator(new ErrorHttpTranslatorBuilder()
+//    .TranslationFor<Error>(e => System.Net.HttpStatusCode.BadRequest)
+//    .TranslationFor<MyNotFoundError>(e => System.Net.HttpStatusCode.NotFound));
+
+
+// Add controllers and configure retornator engine
+builder.Services
+    .AddControllers()
     .AddRetornator();
+
+// swagger for tests
+builder.Services.AddSwaggerGen(setup =>
+{
+    setup.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "1.0",
+        Description = "sample retornator api",
+        Title = "retornator api"
+    });
+});
 
 #endregion DI
 
@@ -41,6 +49,13 @@ var app = builder.Build();
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints => endpoints.MapControllers());
+app.UseSwagger();
+
+app.UseSwaggerUI();
+
+app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
 
 #endregion
+
+
+await app.RunAsync();

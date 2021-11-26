@@ -1,13 +1,23 @@
 ﻿using Nudes.Retornator.Core;
 
-namespace Nudes.Retornator.AspnetCore.Errors
-{
-    public class UnprocessableEntityError : Error
-    {
-        public UnprocessableEntityError() : base("Unprocessable Entity", null)
-        { }
+namespace Nudes.Retornator.AspnetCore.Errors;
 
-        public UnprocessableEntityError(string description) : base("Unprocessable Entity", description)
-        { }
-    }
+
+/// <summary>
+/// The request is unprocessable
+/// </summary>
+public class UnprocessableEntityError : Error
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public UnprocessableEntityError() : base("Unprocessable Entity", null)
+    { }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="description"></param>
+    public UnprocessableEntityError(string description) : base("Unprocessable Entity", description)
+    { }
 }

@@ -2,7 +2,7 @@
 
 namespace Nudes.Retornator.Sample.Features.Values.Errors
 {
-    public class ValueNotFoundError : NotFoundError
+    public class ValueNotFoundError : MyNotFoundError
     {
         public ValueNotFoundError(int id) : base() {
             ValueId = id;

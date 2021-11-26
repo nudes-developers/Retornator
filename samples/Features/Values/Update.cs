@@ -1,33 +1,27 @@
-﻿using Nudes.Retornator.Core;
-using Nudes.Retornator.Sample.Errors;
-using Nudes.Retornator.Sample.Features.Values.Errors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Nudes.Retornator.Sample.Features.Values.Errors;
 
-namespace Nudes.Retornator.Sample.Features.Values
+namespace Nudes.Retornator.Sample.Features.Values;
+
+public class UpdateResult
 {
-    public class Update
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public class UpdateHandler
+{
+    public static async Task<ResultOf<UpdateResult>> Handle(bool returnWithError)
     {
-        public class Result : ResultOf<Update.Result>
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
+        await Task.CompletedTask;
+        if (returnWithError)
+            return new ValueInvalidError("2.0")
+                    .AddFieldErrors("Name", "The field name must have 30 or more characters.")
+                    .AddFieldErrors("Id", "The field Id cannot be altered.");
 
-        public static Task<Result> Handle(bool returnWithError)
+        return new UpdateResult()
         {
-            if (returnWithError)
-                return Task.FromResult(Result.Throw(new ValueInvalidError("2.0"))
-                        .AddFieldError("Name", "The field name must have 30 or more characters.")
-                        .AddFieldError("Id", "The field Id cannot be altered."));
-
-            return Task.FromResult(new Result()
-            {
-                Id = 2,
-                Name = "Result of a success update"
-            });
-        }
+            Id = 2,
+            Name = "Result of a success update"
+        };
     }
 }

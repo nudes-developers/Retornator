@@ -1,31 +1,25 @@
-﻿using Nudes.Retornator.Core;
-using Nudes.Retornator.Sample.Errors;
-using Nudes.Retornator.Sample.Features.Values.Errors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Nudes.Retornator.Sample.Features.Values.Errors;
 
-namespace Nudes.Retornator.Sample.Features.Values
+namespace Nudes.Retornator.Sample.Features.Values;
+
+public class ReadResult
 {
-    public class Read
-    {
-        public class Result : ResultOf<Read.Result>
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
 
-        public static Task<Result> Handle(bool returnWithError)
+public class ReadHandler
+{
+    public static async Task<ResultOf<ReadResult>> Handle(bool returnWithError)
+    {
+        await Task.CompletedTask;
+        if (returnWithError)
+            return Result.Throw(new ValueNotFoundError(1));
+
+        return new ReadResult()
         {
-            if (returnWithError)
-                return Task.FromResult(Result.Throw(new ValueNotFoundError(1)));
-            
-            return Task.FromResult(new Result()
-            {
-                Id = 1,
-                Name = "Result of a success read"
-            });
-        }
+            Id = 1,
+            Name = "Result of a success read"
+        };
     }
 }

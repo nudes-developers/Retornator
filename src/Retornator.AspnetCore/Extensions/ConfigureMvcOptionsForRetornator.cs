@@ -3,12 +3,8 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nudes.Retornator.Core;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Text.Json;
 
 namespace Nudes.Retornator.AspnetCore
 {
@@ -18,22 +14,25 @@ namespace Nudes.Retornator.AspnetCore
     public class ConfigureMvcOptionsForRetornator : IConfigureOptions<MvcOptions>
     {
         private readonly ILogger<MvcOptions> logger;
-        private readonly IErrorDomainTranslator<HttpStatusCode> responseManager;
-        private readonly JsonSerializerOptions jsonSerializerOptions;
+        private readonly IErrorDomainTranslator<HttpStatusCode> errorHttpTranslator;
 
-        public ConfigureMvcOptionsForRetornator(ILogger<MvcOptions> logger, IErrorDomainTranslator<HttpStatusCode> responseManager, JsonSerializerOptions jsonSerializerOptions)
+        /// <summary>
+        /// 
+        /// </summary>
+        public ConfigureMvcOptionsForRetornator(ILogger<MvcOptions> logger, IErrorDomainTranslator<HttpStatusCode> errorHttpTranslator)
         {
             this.logger = logger;
-            this.responseManager = responseManager;
-            this.jsonSerializerOptions = jsonSerializerOptions;
+            this.errorHttpTranslator = errorHttpTranslator;
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public void Configure(MvcOptions op)
         {
             logger.LogInformation("Adding Retornator output formatter");
             int index = op.OutputFormatters.IndexOf(op.OutputFormatters.OfType<SystemTextJsonOutputFormatter>().First());
-            op.OutputFormatters.Insert(index, new RetornatorOutputFormatter(jsonSerializerOptions, responseManager));
-            op.OutputFormatters.Insert(index, new RetornartorStreamOutputFormatter());
+            op.OutputFormatters.Insert(index, new RetornatorResultOutputFormatter(errorHttpTranslator, op.OutputFormatters.OfType<TextOutputFormatter>().ToArray()));
         }
     }
 }

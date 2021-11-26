@@ -6,16 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="EmbeddedResources\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResources\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\src\Retornator.AspnetCore\Nudes.Retornator.AspnetCore.csproj" />
     <ProjectReference Include="..\src\Retornator.Core\Nudes.Retornator.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
 </Project>

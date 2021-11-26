@@ -1,22 +1,4 @@
-﻿using System;
-
-namespace Nudes.Retornator.Core;
-
-/// <summary>
-/// Protocol of an result
-/// </summary>
-public interface IResult
-{
-    /// <summary>
-    /// Returns if error is not null
-    /// </summary>
-    bool HasError => Error is not null;
-
-    /// <summary>
-    /// Error returned
-    /// </summary>
-    Error Error { get; set; }
-}
+﻿namespace Nudes.Retornator.Core;
 
 /// <summary>
 /// Most basic representation of a result, an empty result
@@ -33,4 +15,27 @@ public class Result : IResult
     /// Error returned
     /// </summary>
     public Error Error { get; set; }
+
+    /// <summary>
+    /// Creates a Result with an error. This error shall be detected and handled further on the application. 
+    /// </summary>
+    /// <param name="error">Error of the result</param>
+    public static Result Throw(Error error) => new()
+    {
+        Error = error
+    };
+
+    /// <summary>
+    /// Creates a Result with a basic error
+    /// </summary>
+    /// <param name="name">Name of the basic error</param>
+    /// <param name="description">Description of the basic error</param>
+    public static Result Throw(string name, string description) => Throw(new Error(name, description));
+
+    /// <summary>
+    /// Implicit convert an error to a result
+    /// </summary>
+    /// <param name="error"></param>
+    public static implicit operator Result(Error error) => Result.Throw(error);
+
 }
