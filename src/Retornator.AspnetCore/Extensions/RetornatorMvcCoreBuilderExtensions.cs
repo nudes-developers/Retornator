@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-
 namespace Nudes.Retornator.AspnetCore;
 
 /// <summary>
@@ -17,6 +16,7 @@ public static class RetornatorMvcCoreBuilderExtensions
     public static IMvcBuilder AddRetornator(this IMvcBuilder mvcBuilder)
     {
         mvcBuilder.Services.AddSingleton<IConfigureOptions<MvcOptions>, ConfigureMvcOptionsForRetornator>();
+        mvcBuilder.Services.AddSingleton<IConfigureOptions<JsonOptions>, ConfigureJsonSerializerOptionsForRetornator>();
         return mvcBuilder;
     }
 }
