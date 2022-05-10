@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace Nudes.Retornator.Core;
 /// <summary>
 /// Represents a collection of errors for each field
 /// </summary>
-public class FieldErrors
+public class FieldErrors : IEnumerable<KeyValuePair<string, List<string>>>
 {
     private Dictionary<string, List<string>> _internal { get; set; }
 
@@ -115,6 +116,20 @@ public class FieldErrors
     /// </summary>
     /// <returns></returns>
     public bool Any() => _internal.Any();
+
+    /// <summary>
+    /// Returning internal Enumerator
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator<KeyValuePair<string, List<string>>> GetEnumerator()
+    {
+        return ((IEnumerable<KeyValuePair<string, List<string>>>)_internal).GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return ((IEnumerable)_internal).GetEnumerator();
+    }
 
     /// <summary>
     /// explicit cast for dictionary
