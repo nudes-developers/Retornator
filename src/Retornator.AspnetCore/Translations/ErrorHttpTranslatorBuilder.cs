@@ -24,6 +24,7 @@ public class ErrorHttpTranslatorBuilder
                 .TranslationFor<NotFoundError>(error => HttpStatusCode.NotFound)
                 .TranslationFor<UnprocessableEntityError>(error => HttpStatusCode.UnprocessableEntity)
                 .TranslationFor<ServiceUnavaiableError>(error => HttpStatusCode.ServiceUnavailable)
+                .TranslationFor<InternalServerError>(error => HttpStatusCode.InternalServerError)
                 .TranslationFor<Error>(error => HttpStatusCode.BadRequest);
 
     readonly Dictionary<Type, Func<Error, HttpStatusCode>> _delegations = new();

@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 namespace Nudes.Retornator.Core;
 
 /// <summary>
-/// 
+/// Basic error domain translator, this class translates error to type T, based on configurations in its InnerDelegations
 /// </summary>
 public class BasicErrorDomainTranslator<T> : IErrorDomainTranslator<T>
 {

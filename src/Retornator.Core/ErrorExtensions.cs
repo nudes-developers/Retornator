@@ -24,7 +24,7 @@ public static class ErrorExtensions
         if (errors.Length == 0)
             throw new ArgumentNullException(nameof(errors));
 
-        error.FieldErrors.AddErrors(fieldName, errors);
+        error.FieldErrors.Add(fieldName, errors);
 
         return error;
     }
