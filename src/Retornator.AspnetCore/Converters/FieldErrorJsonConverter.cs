@@ -26,6 +26,6 @@ public class FieldErrorJsonConverter : JsonConverter<FieldErrors>
     /// </summary>
     public override void Write(Utf8JsonWriter writer, FieldErrors value, JsonSerializerOptions options)
     {
-        JsonSerializer.Serialize(writer, value.InternalSource, options);
+        JsonSerializer.Serialize(writer, (Dictionary<string,List<string>>)value, options);
     }
 }

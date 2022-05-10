@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Nudes.Retornator.Core;
@@ -8,17 +9,14 @@ namespace Nudes.Retornator.Core;
 /// </summary>
 public class FieldErrors
 {
-    /// <summary>
-    /// Internal dictionary source
-    /// </summary>
-    public Dictionary<string, ICollection<string>> InternalSource { get; private set; }
+    private Dictionary<string, List<string>> _internal { get; set; }
 
     /// <summary>
     /// Constructor
     /// </summary>
     public FieldErrors()
     {
-        InternalSource = new();
+        _internal = new();
     }
 
     /// <summary>
@@ -27,26 +25,26 @@ public class FieldErrors
     /// <param name="source">Dictionary source</param>
     public FieldErrors(Dictionary<string, IEnumerable<string>> source)
     {
-        InternalSource = source.ToDictionary(d=>d.Key, d=>d.Value is ICollection<string> col ? col : d.Value.ToList());
+        _internal = source.ToDictionary(d => d.Key, d => d.Value is List<string> col ? col : d.Value.ToList());
     }
 
     /// <summary>
     /// Construct from a dicitonary source
     /// </summary>
     /// <param name="source">Dictionary source</param>
-    public FieldErrors(Dictionary<string, ICollection<string>> source)
+    public FieldErrors(Dictionary<string, List<string>> source)
     {
-        InternalSource = source;
+        _internal = source.ToDictionary(d => d.Key, d => d.Value is List<string> col ? col : d.Value.ToList());
     }
 
     /// <summary>
     /// Returns or sets a collection of errors for a field
     /// </summary>
     /// <param name="fieldName">name of the field</param>
-    public ICollection<string> this[string fieldName]
+    public List<string> this[string fieldName]
     {
-        get => InternalSource[fieldName];
-        set => InternalSource[fieldName] = value;
+        get => _internal[fieldName];
+        set => _internal[fieldName] = value;
     }
 
     /// <summary>
@@ -54,12 +52,15 @@ public class FieldErrors
     /// </summary>
     /// <param name="fieldName">field name</param>
     /// <param name="error">error description</param>
-    public void AddError(string fieldName, string error)
+    /// <exception cref="ArgumentNullException">thrown when fieldName or error is null</exception>
+    public void Add(string fieldName, string error)
     {
-        if (!InternalSource.ContainsKey(fieldName))
-            InternalSource[fieldName] = new List<string>();
+        fieldName = fieldName ?? throw new ArgumentNullException(nameof(fieldName));
+        error = error ?? throw new ArgumentNullException(nameof(error));
+        if (!_internal.ContainsKey(fieldName))
+            _internal[fieldName] = new List<string>();
 
-        InternalSource[fieldName].Add(error);
+        _internal[fieldName].Add(error);
     }
 
     /// <summary>
@@ -67,19 +68,36 @@ public class FieldErrors
     /// </summary>
     /// <param name="fieldName">field name</param>
     /// <param name="errors">collection of errors</param>
-    public void AddErrors(string fieldName, params string[] errors)
+    public void Add(string fieldName, params string[] errors)
     {
-        if (!InternalSource.ContainsKey(fieldName))
-            InternalSource[fieldName] = new List<string>(errors);
+        fieldName = fieldName ?? throw new ArgumentNullException(nameof(fieldName));
+        if (errors.Length == 0) throw new ArgumentOutOfRangeException(nameof(errors), errors, "Errors cannot be empty");
+        if (!_internal.ContainsKey(fieldName))
+            _internal[fieldName] = new List<string>(errors);
         else
-            for (int i = 0; i < errors.Length; i++)
-                InternalSource[fieldName].Add(errors[i]);
+            _internal[fieldName].AddRange(errors);
+    }
+
+    /// <summary>
+    /// Add a enumerable of errors to a field
+    /// </summary>
+    /// <param name="fieldName">field name</param>
+    /// <param name="errors">collection of errors</param>
+    public void Add(string fieldName, IEnumerable<string> errors)
+    {
+        fieldName = fieldName ?? throw new ArgumentNullException(nameof(fieldName));
+        errors = errors ?? throw new ArgumentNullException(nameof(errors));
+        if (!errors.Any()) throw new ArgumentOutOfRangeException(nameof(errors), errors, "Errors cannot be empty");
+        if (!_internal.ContainsKey(fieldName))
+            _internal[fieldName] = new List<string>(errors);
+        else
+            _internal[fieldName].AddRange(errors);
     }
 
     /// <summary>
     /// Clear all errors
     /// </summary>
-    public void Clear() => InternalSource.Clear();
+    public void Clear() => _internal.Clear();
 
     /// <summary>
     /// Clear all errors for a field
@@ -87,19 +105,26 @@ public class FieldErrors
     /// <param name="fieldName">name of the field</param>
     public void Clear(string fieldName)
     {
-        if (InternalSource.ContainsKey(fieldName))
-            InternalSource[fieldName].Clear();
+        fieldName = fieldName ?? throw new ArgumentNullException(nameof(fieldName));
+        if (_internal.ContainsKey(fieldName))
+            _internal[fieldName].Clear();
     }
+
+    /// <summary>
+    /// Check if there is any errors
+    /// </summary>
+    /// <returns></returns>
+    public bool Any() => _internal.Any();
 
     /// <summary>
     /// explicit cast for dictionary
     /// </summary>
     /// <param name="field"></param>
-    public static explicit operator Dictionary<string, ICollection<string>>(FieldErrors field) => field.InternalSource;
+    public static explicit operator Dictionary<string, List<string>>(FieldErrors field) => field._internal;
 
     /// <summary>
     /// explicit cast from dictionary
     /// </summary>
     /// <param name="dictionary"></param>
-    public static explicit operator FieldErrors(Dictionary<string, ICollection<string>> dictionary) => new(dictionary);
+    public static explicit operator FieldErrors(Dictionary<string, List<string>> dictionary) => new(dictionary);
 }
