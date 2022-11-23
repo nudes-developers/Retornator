@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Nudes.Retornator.Swagger\Nudes.Retornator.Swagger.csproj" />
     <ProjectReference Include="..\src\Retornator.AspnetCore\Nudes.Retornator.AspnetCore.csproj" />
     <ProjectReference Include="..\src\Retornator.Core\Nudes.Retornator.Core.csproj" />
   </ItemGroup>
