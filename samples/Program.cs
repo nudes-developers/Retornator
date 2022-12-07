@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Nudes.Retornator.AspnetCore;
 using Nudes.Retornator.AspnetCore.Errors;
 using Nudes.Retornator.Sample.Errors;
+using Nudes.Retornator.Swagger.Extensions;
 using System.Reflection;
 
 var builder = WebApplication
@@ -39,6 +40,8 @@ builder.Services.AddSwaggerGen(setup =>
         Description = "sample retornator api",
         Title = "retornator api"
     });
+
+    setup.AddRetornatorFilters();
 });
 
 #endregion DI
